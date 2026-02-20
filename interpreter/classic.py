@@ -1,6 +1,6 @@
 import sys
 
-def brainfuck(code):
+def cmn_classic(code):
     code = code.replace('(', '( ').replace(')', ' )')
     code = code.split()
     stack = []
@@ -20,9 +20,17 @@ def brainfuck(code):
     while i < len(code):
         cmd = code[i]
         if cmd == 'R':
-            pointer += 1
+            if pointer == 29999:
+               print("Undefined")
+               break
+            else:
+               pointer += 1
         elif cmd == 'L':
-            pointer -= 1
+            if pointer == 0:
+               print("Undefined")
+               break
+            else:
+               pointer -= 1
         elif cmd == 'U':
             memory[pointer] = (memory[pointer] + 1) % 256
         elif cmd == 'D':
@@ -43,4 +51,4 @@ def brainfuck(code):
 
 if __name__ == '__main__':
     code = input("Initial Input: ")
-    brainfuck(code)
+    cmn_classic(code)

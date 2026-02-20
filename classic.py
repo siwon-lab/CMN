@@ -1,3 +1,5 @@
+import sys
+
 def brainfuck(code):
     code = code.replace('(', '( ').replace(')', ' )')
     code = code.split()
@@ -22,13 +24,13 @@ def brainfuck(code):
         elif cmd == 'L':
             pointer -= 1
         elif cmd == 'U':
-            memory[pointer] += 1
+            memory[pointer] = (memory[pointer] + 1) % 256
         elif cmd == 'D':
-            memory[pointer] -= 1
+            memory[pointer] = (memory[pointer] - 1) % 256
         elif cmd == 'F':
             print(chr(memory[pointer]), end="")
         elif cmd == 'B':
-            c = input("Additional Input: ")
+            c = sys.stdin.read(1)
             memory[pointer] = ord(c[0]) if c else 0
         elif cmd == '(':
             if memory[pointer] == 0:
@@ -39,5 +41,6 @@ def brainfuck(code):
         i += 1
     print()
 
-code = input("Initial Input: ")
-brainfuck(code)
+if __name__ == '__main__':
+    code = input("Initial Input: ")
+    brainfuck(code)

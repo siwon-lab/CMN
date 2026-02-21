@@ -1,14 +1,14 @@
 import sys
 
 def cmn_classic(code):
-    code = code.replace('(', '( ').replace(')', ' )')
+    code = code.replace("(", " ( ").replace(")", " ) ")
     code = code.split()
     stack = []
     loops = {}
     for i, cmd in enumerate(code):
-        if cmd == '(':
+        if cmd == "(":
             stack.append(i)
-        elif cmd == ')':
+        elif cmd == ")":
             j = stack.pop()
             loops[j] = i
             loops[i] = j
@@ -19,36 +19,38 @@ def cmn_classic(code):
 
     while i < len(code):
         cmd = code[i]
-        if cmd == 'R':
-            if pointer == 29999:
-               print("Undefined")
-               break
-            else:
-               pointer += 1
-        elif cmd == 'L':
-            if pointer == 0:
-               print("Undefined")
-               break
-            else:
-               pointer -= 1
-        elif cmd == 'U':
-            memory[pointer] = (memory[pointer] + 1) % 256
-        elif cmd == 'D':
-            memory[pointer] = (memory[pointer] - 1) % 256
-        elif cmd == 'F':
-            print(chr(memory[pointer]), end="")
-        elif cmd == 'B':
-            c = sys.stdin.read(1)
-            memory[pointer] = ord(c[0]) if c else 0
-        elif cmd == '(':
-            if memory[pointer] == 0:
-                i = loops[i]
-        elif cmd == ')':
-            if memory[pointer] != 0:
-                i = loops[i]
+        match cmd:
+            case "R":
+                pointer += 1
+                if pointer >= 30000:
+                    print("Undefined")
+                    break
+            case "L":
+                pointer -= 1
+                if pointer < 0:
+                    print("Undefined")
+                    break
+            case "U":
+                memory[pointer] = (memory[pointer] + 1) % 256
+            case "D":
+                memory[pointer] = (memory[pointer] - 1) % 256
+            case "F":
+                print(chr(memory[pointer]), end="")
+            case "B":
+                c = sys.stdin.read(1)
+                memory[pointer] = ord(c[0]) if c else 0
+            case "(":
+                if memory[pointer] == 0:
+                    i = loops[i]
+            case ")":
+                if memory[pointer] != 0:
+                    i = loops[i]
+            case _:
+                print("Undefined")
+                break
         i += 1
     print()
 
-if __name__ == '__main__':
-    code = input("Initial Input: ")
+if __name__ == "__main__":
+    code = input("Input: ")
     cmn_classic(code)

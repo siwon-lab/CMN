@@ -26,6 +26,10 @@ else,
 cd interpreter
 python3.14 classic.py <<< "(code)"
 ```
+Example:
+```
+python3.14 converter/bf_to_cmn_classic.py <<< "B R F"
+```
 
 ### Example Code
 Input:
@@ -47,10 +51,6 @@ else,
 ```
 cd converter
 python3.14 bf_to_cmn_classic.py <<< "(code)"
-```
-Example:
-```
-python3.14 converter/bf_to_cmn_classic.py <<< "B R F"
 ```
 
 ## CMN Double

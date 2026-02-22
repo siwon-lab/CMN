@@ -52,5 +52,5 @@ def cmn_classic(code):
     print()
 
 if __name__ == "__main__":
-    code = input("Input: ")
+    code = input()
     cmn_classic(code)

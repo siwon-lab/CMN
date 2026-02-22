@@ -1,4 +1,4 @@
-def bf_to_cmn_classic(code):
+def bf_to_classic(code):
    table = {
       '>': 'R',
       '<': 'L',
@@ -20,4 +20,4 @@ def bf_to_cmn_classic(code):
 
 if __name__ == '__main__':
    code = input("Input: ")
-   print(bf_to_cmn_classic(code))
+   print(bf_to_classic(code))

@@ -114,5 +114,5 @@ def cmn_double(code):
    print()
 
 if __name__ == "__main__":
-   code = input("Input: ")
+   code = input()
    cmn_double(code)
